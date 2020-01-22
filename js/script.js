@@ -7,19 +7,34 @@
 //esponere un alert con 5 numeri casuali
 var numeriCasuali = [];
 var numeriIndovinati = [];
+var numeroVisto;
 for (var i = 0; i < 5; i++) {
   numeriCasuali[i]= getRandom(1, 100);
 }
 alert(numeriCasuali);
 
+//timeout di 30 secondi
 setTimeout(myFunction, 3000);
+
 //function per chiedere all'utente di inserire i numeri
 function myFunction() {
   for (var i = 0; i < 5; i++) {
-    var numeriIndovinati = parseInt(prompt('inserisci i numeri visti uno alla volta'));
-    console.log(numeriIndovinati);
+    var numeroVisto = parseInt(prompt('inserisci i numeri visti uno alla volta'));
+    numeriIndovinati.push(numeroVisto);
   }
+  console.log(numeriIndovinati);
+  indovinato = 0;
+  for (var i = 0; i < numeriCasuali.length; i++) {
+    if (numeriIndovinati[i] == numeriCasuali[i]) {
+      indovinato++;
+      alert('hai indovinato il numero' +' ' + numeriIndovinati[i]);
+    } else {
+      alert('hai sbagliato il numero' + ' ' + numeriIndovinati[i]);
+    }
+  }
+  alert('hai indovinato' + ' ' + indovinato);
 }
+
 //function per generare numeri casuali
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
